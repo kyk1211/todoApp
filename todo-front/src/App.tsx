@@ -4,8 +4,10 @@ import Todo from "./components/Todo";
 import styled from "@emotion/styled";
 import AddTodo from "./components/AddTodo";
 import callApi from "./libs/callApi";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
   const [items, setItems] = useState<Item[]>([]);
 
   const callData = async () => {
@@ -14,25 +16,35 @@ function App() {
       setItems(res.data);
     } catch (error) {
       console.log(error);
+      navigate("/login");
     }
   };
 
-  const addItem = (item: Item) => {
-    callApi("/todo", "POST", item).then((res) => {
-      setItems(res.data);
-    });
+  const addItem = async (item: Item) => {
+    try {
+      const res = await callApi("/todo", "POST", item);
+      setItems(() => res.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const deleteItem = (item: Item) => {
-    callApi("/todo", "DELETE", item).then((res) => {
-      setItems(res.data);
-    });
+  const deleteItem = async (item: Item) => {
+    try {
+      const res = await callApi("/todo", "DELETE", item);
+      setItems(() => res.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const updateItem = (item: Item) => {
-    callApi("/todo", "PUT", item).then((res) => {
-      setItems(res.data);
-    });
+  const updateItem = async (item: Item) => {
+    try {
+      const res = await callApi("/todo", "PUT", item);
+      setItems(() => res.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
