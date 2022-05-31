@@ -20,7 +20,7 @@ export default function AddTodo({ addfn }: Props) {
 
   const handleClick = () => {
     if (input.trim() === "") return;
-    addfn({ id: null, title: input, done: false });
+    addfn({ id: "", title: input, done: false });
     setInput(() => "");
   };
 

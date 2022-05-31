@@ -24,14 +24,8 @@ export default function Todo({ item, deletefn, updateItem }: Props) {
 
   return (
     <Container className="Todo">
-      <CheckBox
-        type={"checkbox"}
-        id={String(item.id)}
-        name={String(item.id)}
-        checked={item.done}
-        onClick={handleCheckBoxClick}
-      />
-      <Label id={String(item.id)} onClick={() => setReadOnly(false)}>
+      <CheckBox type={"checkbox"} id={item.id} name={item.id} checked={item.done} onClick={handleCheckBoxClick} />
+      <Label id={item.id} onClick={() => setReadOnly(false)}>
         {readOnly ? (
           item.title
         ) : (

@@ -1,5 +1,5 @@
 interface Item {
-  id: number | null;
+  id: string;
   title: string;
   done: boolean;
 }
