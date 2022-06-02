@@ -31,4 +31,9 @@ export const signin = async (userInfo: { email: string; password: string }) => {
   return res;
 };
 
+export const signup = async (userInfo: { username: string; email: string; password: string }) => {
+  const res = await callApi("/auth/signup", "POST", userInfo);
+  return res;
+};
+
 export default callApi;

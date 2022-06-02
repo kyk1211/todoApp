@@ -9,14 +9,18 @@ import { useNavigate } from "react-router-dom";
 function App() {
   const navigate = useNavigate();
   const [items, setItems] = useState<Item[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const callData = async () => {
+    setIsLoading(true);
     try {
       const res = await callApi("/todo", "GET", null);
       setItems(res.data);
     } catch (error) {
       console.log(error);
       navigate("/login");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -50,6 +54,8 @@ function App() {
   useEffect(() => {
     callData();
   }, []);
+
+  if (isLoading) return <div>Loading</div>;
 
   return (
     <Container className="App">

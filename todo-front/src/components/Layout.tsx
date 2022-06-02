@@ -1,24 +1,17 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 export default function Layout() {
   return (
     <div>
+      <Navbar />
       <main>
         <Outlet />
       </main>
-      <Footer>
-        Copyright © fsofwareengineer, {new Date().getFullYear()}
-        {"."}
-      </Footer>
+      <Footer />
     </div>
   );
 }
-
-const Footer = styled.footer({
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-});
